@@ -18,11 +18,10 @@ router.post("/onoff", function (req, res) {
 */
 
 router.post('/onoff', function (req, res, next) {
-    request.post({
-        'url': 'https://api.particle.io/v1/devices/3f0034000447343138333038/led?access_token=b17ccb6f2996e593961f647fc8e796959a86d151',
-        'headers': {
-            'Content-Type': 'application/octet-stream',
-        }   
+    request({
+        url: 'https://api.particle.io/v1/devices/3f0034000447343138333038/led?access_token=b17ccb6f2996e593961f647fc8e796959a86d151',
+        method: "POST",
+        form: { args: req.param('args') }
     },
         function (error, response, body) {
             body = JSON.parse(body);
@@ -30,7 +29,7 @@ router.post('/onoff', function (req, res, next) {
                 console.log(body.error);
             }
             else {
-                res.render('index', { title: 'PZr Weather Station', webaction: req.body.params });
+                res.render('index', { title: 'PZr Weather Station', webaction: req.body.args });
             }
         }
     );
