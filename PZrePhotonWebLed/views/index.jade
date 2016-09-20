@@ -1,0 +1,17 @@
+﻿extends layout
+
+block content
+	h1= title
+	p Welcome to #{title}
+	div
+		p Action #{webaction}
+	div
+		form(action='/onoff',method='post')
+			fieldset
+				div
+					label(for='r1') On
+					input(id='r1',type='radio',value='on',placeholder='@',name='args')
+					label(for='r2') Off
+					input(id='r2',type='radio',value='off',placeholder='@',name='args')	   
+					input(type='submit',value='led')
+					
